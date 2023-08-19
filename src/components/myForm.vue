@@ -6,7 +6,7 @@
             </div>
             <div class="column">
                 <div class="is-flex is_align-items-center is-justify-content-space-between">
-                    <cronometroView :tempoEmSegundos="tempoEmSegundos"/>
+                    <cronometroView :tempoEmSegundos="tempoEmSegundos" />
                     <button class="button" @click="iniciar">
                         <span class="icon">
                             <i class="fas fa-play"></i>
@@ -31,24 +31,24 @@ import cronometroView from './cronometroView.vue';
 
 export default defineComponent({
     name: 'myForm',
-    components:{
+    components: {
         cronometroView,
     },
-    data(){
-        return{
+    data() {
+        return {
             tempoEmSegundos: 0,
             cronometro: 0,
         }
     },
-    
+
     methods: {
-        iniciar (){
+        iniciar() {
             this.cronometro = setInterval(() => {
                 this.tempoEmSegundos += 1
             }, 1000);
             console.log('iniciando');
         },
-        finalizar (){
+        finalizar() {
             console.log('finalizando');
             clearInterval(this.cronometro)
         }
