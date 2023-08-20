@@ -1,4 +1,4 @@
-export default interface iTarefa{
+export default interface iTarefa {
     duracaoEmSegundos: number,
     descricao: string
 }

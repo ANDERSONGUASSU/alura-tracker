@@ -4,9 +4,12 @@
       <barra_lateral />
     </div>
     <div class="column is-three-quarter">
-      <myForm @aoSalvarTarefa="salvarTarefa"/>
+      <myForm @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
-        <tarefaView v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
+        <tarefaView v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />
+        <boxView v-if="listaEstaVazia">
+          Você não iniciou nenhuma atividade ainda!
+        </boxView>
       </div>
     </div>
 
@@ -20,6 +23,7 @@ import barra_lateral from './components/barra_lateral.vue';
 import myForm from './components/myForm.vue';
 import tarefaView from './components/tarefaView.vue';
 import iTarefa from './interface/iTarefa';
+import boxView from './components/boxView.vue';
 
 export default defineComponent({
   name: 'App',
@@ -27,14 +31,20 @@ export default defineComponent({
     barra_lateral,
     myForm,
     tarefaView,
-  },
+    boxView
+},
   data() {
     return {
       tarefas: [] as iTarefa[]
     }
   },
-  methods:{
-    salvarTarefa (tarefa: iTarefa){
+  computed:{
+    listaEstaVazia (): boolean {
+      return this.tarefas.length == 0
+    }
+  },
+  methods: {
+    salvarTarefa(tarefa: iTarefa) {
       this.tarefas.push(tarefa)
     }
   }

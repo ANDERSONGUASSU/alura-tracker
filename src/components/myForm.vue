@@ -5,7 +5,7 @@
                 <input type="text" class="input" placeholder="Qual tarefa vocẽ deseja iniciar?" v-model="descricao">
             </div>
             <div class="column">
-                <temporizadorView @ao-temporizador-finalizado="finalizarTarefa"/>
+                <temporizadorView @ao-temporizador-finalizado="finalizarTarefa" />
             </div>
         </div>
     </div>
@@ -20,15 +20,15 @@ export default defineComponent({
     components: {
         temporizadorView,
     },
-    data(){
-        return{
+    data() {
+        return {
             descricao: ''
         }
     },
     methods: {
-        finalizarTarefa (tempoDecorrido: number) : void {
+        finalizarTarefa(tempoDecorrido: number): void {
 
-            this.$emit('aoSalvarTarefa',{
+            this.$emit('aoSalvarTarefa', {
                 duracaoEmSegundos: tempoDecorrido,
                 descricao: this.descricao
             })
