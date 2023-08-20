@@ -1,9 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline ">
     <div class="column is-one-quarter">
       <barra_lateral />
     </div>
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <myForm @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
         <tarefaView v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />
@@ -12,8 +12,6 @@
         </boxView>
       </div>
     </div>
-
-
   </main>
 </template>
 
@@ -32,14 +30,14 @@ export default defineComponent({
     myForm,
     tarefaView,
     boxView
-},
+  },
   data() {
     return {
       tarefas: [] as iTarefa[]
     }
   },
-  computed:{
-    listaEstaVazia (): boolean {
+  computed: {
+    listaEstaVazia(): boolean {
       return this.tarefas.length == 0
     }
   },
@@ -55,4 +53,20 @@ export default defineComponent({
 .lista {
   padding: 1.25rem;
 }
-</style>
+
+main {
+  --bg-primario: #fff;
+  --texto-primario: #000;
+
+}
+
+main.modo-escuro {
+  --bg-primario: #2b2d42;
+  --texto-primario: #ddd;
+
+}
+
+.conteudo {
+  background-color: var(--bg-primario);
+  color: var(--texto-primario);
+}</style>
