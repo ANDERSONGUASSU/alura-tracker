@@ -4,7 +4,10 @@
       <barra_lateral />
     </div>
     <div class="column is-three-quarter">
-      <myForm />
+      <myForm @aoSalvarTarefa="salvarTarefa"/>
+      <div class="lista">
+        <tarefaView v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa"/>
+      </div>
     </div>
 
 
@@ -15,14 +18,31 @@
 import { defineComponent } from 'vue';
 import barra_lateral from './components/barra_lateral.vue';
 import myForm from './components/myForm.vue';
+import tarefaView from './components/tarefaView.vue';
+import iTarefa from './interface/iTarefa';
 
 export default defineComponent({
   name: 'App',
   components: {
     barra_lateral,
-    myForm
+    myForm,
+    tarefaView,
+  },
+  data() {
+    return {
+      tarefas: [] as iTarefa[]
+    }
+  },
+  methods:{
+    salvarTarefa (tarefa: iTarefa){
+      this.tarefas.push(tarefa)
+    }
   }
 });
 </script>
 
-<style></style>
+<style>
+.lista {
+  padding: 1.25rem;
+}
+</style>
