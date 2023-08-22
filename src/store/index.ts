@@ -3,7 +3,7 @@ import { InjectionKey } from "vue"
 import { Store, createStore } from "vuex"
 
 interface Estado {
-    projetos: iProjeto
+    projetos: iProjeto[];
 }
 
 export const key: InjectionKey<Store<Estado>> = Symbol()
