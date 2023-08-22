@@ -1,16 +1,13 @@
 <template>
-  <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuroAtivo}">
+  <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuroAtivo }">
     <div class="column is-one-quarter">
-      <barra_lateral @aoTemaAlterado="trocarTema"/>
+      <barra_lateral @aoTemaAlterado="trocarTema" />
     </div>
     <div class="column is-three-quarter conteudo">
-      <myForm @aoSalvarTarefa="salvarTarefa" />
-      <div class="lista">
-        <tarefaView v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />
-        <boxView v-if="listaEstaVazia">
-          Você não iniciou nenhuma atividade ainda!
-        </boxView>
-      </div>
+      <RouterView>
+        
+      </RouterView>
+
     </div>
   </main>
 </template>
@@ -18,36 +15,21 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import barra_lateral from './components/barra_lateral.vue';
-import myForm from './components/myForm.vue';
-import tarefaView from './components/tarefaView.vue';
-import iTarefa from './interface/iTarefa';
-import boxView from './components/boxView.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     barra_lateral,
-    myForm,
-    tarefaView,
-    boxView
   },
   data() {
     return {
-      tarefas: [] as iTarefa[],
       modoEscuroAtivo: false
-    
+
     }
   },
-  computed: {
-    listaEstaVazia(): boolean {
-      return this.tarefas.length == 0
-    }
-  },
+
   methods: {
-    salvarTarefa(tarefa: iTarefa) {
-      this.tarefas.push(tarefa)
-    },
-    trocarTema(modoEscuroAtivo: boolean){
+    trocarTema(modoEscuroAtivo: boolean) {
       this.modoEscuroAtivo = modoEscuroAtivo
     }
   }
@@ -74,4 +56,5 @@ main.modo-escuro {
 .conteudo {
   background-color: var(--bg-primario);
   color: var(--texto-primario);
-}</style>
+}
+</style>
