@@ -13,6 +13,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import temporizadorView from './temporizadorView.vue';
+import { useStore } from 'vuex';
 
 export default defineComponent({
     name: 'myForm',
@@ -34,6 +35,9 @@ export default defineComponent({
             })
             this.descricao = ''
         }
+    },
+    setup() {
+        const store = useStore
     }
 });
 </script>
